@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import { Poppins } from "next/font/google";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { usePathname } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,6 +18,7 @@ interface NavbarItemProps {
   isActive?: boolean;
 }
 
+// button
 const NavbarItem = ({ href, children, isActive }: NavbarItemProps) => {
   return (
     <Button
@@ -31,6 +34,7 @@ const NavbarItem = ({ href, children, isActive }: NavbarItemProps) => {
   );
 };
 
+// navbar
 const navbarItems = [
   { href: "/", children: "Home" },
   { href: "/about", children: "About" },
@@ -41,6 +45,7 @@ const navbarItems = [
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <nav className="h-20 flex border-b border-black justify-between font-medium bg-white">
